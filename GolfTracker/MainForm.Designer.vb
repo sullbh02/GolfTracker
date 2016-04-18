@@ -26,12 +26,14 @@ Partial Class MainForm
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatisticsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GolfersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RoundToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RoundsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HandicapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GolfersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -64,44 +66,56 @@ Partial Class MainForm
         Me.StatisticsToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.StatisticsToolStripMenuItem.Text = "Statistics"
         '
-        'GolfersToolStripMenuItem
-        '
-        Me.GolfersToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem1})
-        Me.GolfersToolStripMenuItem.Name = "GolfersToolStripMenuItem"
-        Me.GolfersToolStripMenuItem.Size = New System.Drawing.Size(56, 20)
-        Me.GolfersToolStripMenuItem.Text = "Golfers"
-        '
         'NewToolStripMenuItem
         '
         Me.NewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RoundToolStripMenuItem})
         Me.NewToolStripMenuItem.Name = "NewToolStripMenuItem"
-        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(99, 22)
         Me.NewToolStripMenuItem.Text = "New"
         '
         'RoundToolStripMenuItem
         '
         Me.RoundToolStripMenuItem.Name = "RoundToolStripMenuItem"
-        Me.RoundToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.RoundToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
         Me.RoundToolStripMenuItem.Text = "Round"
         '
         'ViewToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RoundsToolStripMenuItem})
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RoundsToolStripMenuItem, Me.HandicapToolStripMenuItem})
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(99, 22)
         Me.ViewToolStripMenuItem.Text = "View"
         '
         'RoundsToolStripMenuItem
         '
         Me.RoundsToolStripMenuItem.Name = "RoundsToolStripMenuItem"
-        Me.RoundsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.RoundsToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
         Me.RoundsToolStripMenuItem.Text = "Rounds"
+        '
+        'HandicapToolStripMenuItem
+        '
+        Me.HandicapToolStripMenuItem.Name = "HandicapToolStripMenuItem"
+        Me.HandicapToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
+        Me.HandicapToolStripMenuItem.Text = "Handicap"
+        '
+        'GolfersToolStripMenuItem
+        '
+        Me.GolfersToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem1, Me.AddToolStripMenuItem})
+        Me.GolfersToolStripMenuItem.Name = "GolfersToolStripMenuItem"
+        Me.GolfersToolStripMenuItem.Size = New System.Drawing.Size(56, 20)
+        Me.GolfersToolStripMenuItem.Text = "Golfers"
         '
         'ViewToolStripMenuItem1
         '
         Me.ViewToolStripMenuItem1.Name = "ViewToolStripMenuItem1"
         Me.ViewToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.ViewToolStripMenuItem1.Text = "View"
+        '
+        'AddToolStripMenuItem
+        '
+        Me.AddToolStripMenuItem.Name = "AddToolStripMenuItem"
+        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AddToolStripMenuItem.Text = "Add"
         '
         'MainForm
         '
@@ -129,4 +143,6 @@ Partial Class MainForm
     Friend WithEvents RoundsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GolfersToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ViewToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents HandicapToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AddToolStripMenuItem As ToolStripMenuItem
 End Class

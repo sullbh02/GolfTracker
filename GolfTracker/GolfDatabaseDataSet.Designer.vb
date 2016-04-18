@@ -29,8 +29,6 @@ Partial Public Class GolfDatabaseDataSet
     
     Private tableStats As StatsDataTable
     
-    Private relationFK_Stats_Golfers As Global.System.Data.DataRelation
-    
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -220,7 +218,6 @@ Partial Public Class GolfDatabaseDataSet
                 Me.tableStats.InitVars
             End If
         End If
-        Me.relationFK_Stats_Golfers = Me.Relations("FK_Stats_Golfers")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -235,8 +232,6 @@ Partial Public Class GolfDatabaseDataSet
         MyBase.Tables.Add(Me.tableGolfers)
         Me.tableStats = New StatsDataTable()
         MyBase.Tables.Add(Me.tableStats)
-        Me.relationFK_Stats_Golfers = New Global.System.Data.DataRelation("FK_Stats_Golfers", New Global.System.Data.DataColumn() {Me.tableGolfers.GolferIdColumn}, New Global.System.Data.DataColumn() {Me.tableStats.GolferIdColumn}, false)
-        Me.Relations.Add(Me.relationFK_Stats_Golfers)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -323,11 +318,11 @@ Partial Public Class GolfDatabaseDataSet
     Partial Public Class GolfersDataTable
         Inherits Global.System.Data.TypedTableBase(Of GolfersRow)
         
-        Private columnGolferId As Global.System.Data.DataColumn
-        
         Private columnName As Global.System.Data.DataColumn
         
         Private columnHome_Course As Global.System.Data.DataColumn
+        
+        Private columnGolferId As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -366,14 +361,6 @@ Partial Public Class GolfDatabaseDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property GolferIdColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnGolferId
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property NameColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnName
@@ -385,6 +372,14 @@ Partial Public Class GolfDatabaseDataSet
         Public ReadOnly Property Home_CourseColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnHome_Course
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property GolferIdColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnGolferId
             End Get
         End Property
         
@@ -425,9 +420,9 @@ Partial Public Class GolfDatabaseDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddGolfersRow(ByVal GolferId As Short, ByVal Name As String, ByVal Home_Course As String) As GolfersRow
+        Public Overloads Function AddGolfersRow(ByVal Name As String, ByVal Home_Course As String) As GolfersRow
             Dim rowGolfersRow As GolfersRow = CType(Me.NewRow,GolfersRow)
-            Dim columnValuesArray() As Object = New Object() {GolferId, Name, Home_Course}
+            Dim columnValuesArray() As Object = New Object() {Name, Home_Course, Nothing}
             rowGolfersRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowGolfersRow)
             Return rowGolfersRow
@@ -456,26 +451,30 @@ Partial Public Class GolfDatabaseDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnGolferId = MyBase.Columns("GolferId")
             Me.columnName = MyBase.Columns("Name")
             Me.columnHome_Course = MyBase.Columns("Home Course")
+            Me.columnGolferId = MyBase.Columns("GolferId")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnGolferId = New Global.System.Data.DataColumn("GolferId", GetType(Short), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnGolferId)
             Me.columnName = New Global.System.Data.DataColumn("Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnName)
             Me.columnHome_Course = New Global.System.Data.DataColumn("Home Course", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnHome_Course)
+            Me.columnGolferId = New Global.System.Data.DataColumn("GolferId", GetType(Short), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnGolferId)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnGolferId}, true))
-            Me.columnGolferId.AllowDBNull = false
-            Me.columnGolferId.Unique = true
             Me.columnName.AllowDBNull = false
             Me.columnName.MaxLength = 50
             Me.columnHome_Course.MaxLength = 50
+            Me.columnGolferId.AutoIncrement = true
+            Me.columnGolferId.AutoIncrementSeed = -1
+            Me.columnGolferId.AutoIncrementStep = -1
+            Me.columnGolferId.AllowDBNull = false
+            Me.columnGolferId.ReadOnly = true
+            Me.columnGolferId.Unique = true
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -755,12 +754,9 @@ Partial Public Class GolfDatabaseDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddStatsRow(ByVal Course As String, ByVal Score As Integer, ByVal Course_Rating As Decimal, ByVal Slope_Rating As Decimal, ByVal parentGolfersRowByFK_Stats_Golfers As GolfersRow, ByVal _Date As Date) As StatsRow
+        Public Overloads Function AddStatsRow(ByVal Course As String, ByVal Score As Integer, ByVal Course_Rating As Decimal, ByVal Slope_Rating As Decimal, ByVal GolferId As Short, ByVal _Date As Date) As StatsRow
             Dim rowStatsRow As StatsRow = CType(Me.NewRow,StatsRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Course, Score, Course_Rating, Slope_Rating, Nothing, _Date}
-            If (Not (parentGolfersRowByFK_Stats_Golfers) Is Nothing) Then
-                columnValuesArray(5) = parentGolfersRowByFK_Stats_Golfers(0)
-            End If
+            Dim columnValuesArray() As Object = New Object() {Nothing, Course, Score, Course_Rating, Slope_Rating, GolferId, _Date}
             rowStatsRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowStatsRow)
             Return rowStatsRow
@@ -977,17 +973,6 @@ Partial Public Class GolfDatabaseDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property GolferId() As Short
-            Get
-                Return CType(Me(Me.tableGolfers.GolferIdColumn),Short)
-            End Get
-            Set
-                Me(Me.tableGolfers.GolferIdColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property Name() As String
             Get
                 Return CType(Me(Me.tableGolfers.NameColumn),String)
@@ -1014,6 +999,17 @@ Partial Public Class GolfDatabaseDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property GolferId() As Short
+            Get
+                Return CType(Me(Me.tableGolfers.GolferIdColumn),Short)
+            End Get
+            Set
+                Me(Me.tableGolfers.GolferIdColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsHome_CourseNull() As Boolean
             Return Me.IsNull(Me.tableGolfers.Home_CourseColumn)
         End Function
@@ -1023,16 +1019,6 @@ Partial Public Class GolfDatabaseDataSet
         Public Sub SetHome_CourseNull()
             Me(Me.tableGolfers.Home_CourseColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function GetStatsRows() As StatsRow()
-            If (Me.Table.ChildRelations("FK_Stats_Golfers") Is Nothing) Then
-                Return New StatsRow(-1) {}
-            Else
-                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("FK_Stats_Golfers")),StatsRow())
-            End If
-        End Function
     End Class
     
     '''<summary>
@@ -1128,17 +1114,6 @@ Partial Public Class GolfDatabaseDataSet
             End Get
             Set
                 Me(Me.tableStats.DateColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property GolfersRow() As GolfersRow
-            Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_Stats_Golfers")),GolfersRow)
-            End Get
-            Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("FK_Stats_Golfers"))
             End Set
         End Property
         
@@ -1357,9 +1332,9 @@ Namespace GolfDatabaseDataSetTableAdapters
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
             tableMapping.DataSetTable = "Golfers"
-            tableMapping.ColumnMappings.Add("GolferId", "GolferId")
             tableMapping.ColumnMappings.Add("Name", "Name")
             tableMapping.ColumnMappings.Add("Home Course", "Home Course")
+            tableMapping.ColumnMappings.Add("GolferId", "GolferId")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -1373,28 +1348,28 @@ Namespace GolfDatabaseDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Home_Course", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Home Course", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Golfers] ([GolferId], [Name], [Home Course]) VALUES (@GolferId"& _ 
-                ", @Name, @Home_Course);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT GolferId, Name, [Home Course] FROM Golfers WHERE"& _ 
-                " (GolferId = @GolferId)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO Golfers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (Name, [Home Course])"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES      "& _ 
+                "  (@Name,@Home_Course); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT GolferId, Name, [Home Course] FROM Golfers WHER"& _ 
+                "E (GolferId = SCOPE_IDENTITY())"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@GolferId", Global.System.Data.SqlDbType.SmallInt, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "GolferId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Name", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Name", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Home_Course", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Home Course", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Name", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "Name", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Home_Course", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "Home Course", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Golfers] SET [GolferId] = @GolferId, [Name] = @Name, [Home Course] "& _ 
-                "= @Home_Course WHERE (([GolferId] = @Original_GolferId) AND ([Name] = @Original_"& _ 
-                "Name) AND ((@IsNull_Home_Course = 1 AND [Home Course] IS NULL) OR ([Home Course]"& _ 
-                " = @Original_Home_Course)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT GolferId, Name, [Home Course] FROM Golfers "& _ 
-                "WHERE (GolferId = @GolferId)"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE       Golfers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Name = @Name, [Home Course] = @Home_Cour"& _ 
+                "se"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (GolferId = @Original_GolferId) AND (Name = @Original_Name) AND"& _ 
+                " (@IsNull_Home_Course = 1) AND ([Home Course] IS NULL) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                     "& _ 
+                "    (GolferId = @Original_GolferId) AND (Name = @Original_Name) AND ([Home Cours"& _ 
+                "e] = @Original_Home_Course); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT GolferId, Name, [Home Course] FROM Golfers"& _ 
+                " WHERE (GolferId = @GolferId)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@GolferId", Global.System.Data.SqlDbType.SmallInt, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "GolferId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Name", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Name", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Home_Course", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Home Course", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_GolferId", Global.System.Data.SqlDbType.SmallInt, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "GolferId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Name", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Name", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Name", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "Name", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Home_Course", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "Home Course", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_GolferId", Global.System.Data.SqlDbType.SmallInt, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "GolferId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Name", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "Name", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Home_Course", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Home Course", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Home_Course", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Home Course", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Home_Course", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "Home Course", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@GolferId", Global.System.Data.SqlDbType.SmallInt, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "GolferId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1410,7 +1385,7 @@ Namespace GolfDatabaseDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT GolferId, Name, [Home Course] FROM dbo.Golfers"
+            Me._commandCollection(0).CommandText = "SELECT        GolferId, Name, [Home Course]"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Golfers"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -1503,17 +1478,16 @@ Namespace GolfDatabaseDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal GolferId As Short, ByVal Name As String, ByVal Home_Course As String) As Integer
-            Me.Adapter.InsertCommand.Parameters(0).Value = CType(GolferId,Short)
+        Public Overloads Overridable Function Insert(ByVal Name As String, ByVal Home_Course As String) As Integer
             If (Name Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Name")
             Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(Name,String)
+                Me.Adapter.InsertCommand.Parameters(0).Value = CType(Name,String)
             End If
             If (Home_Course Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(Home_Course,String)
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(Home_Course,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -1534,31 +1508,31 @@ Namespace GolfDatabaseDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal GolferId As Short, ByVal Name As String, ByVal Home_Course As String, ByVal Original_GolferId As Short, ByVal Original_Name As String, ByVal Original_Home_Course As String) As Integer
-            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(GolferId,Short)
+        Public Overloads Overridable Function Update(ByVal Name As String, ByVal Home_Course As String, ByVal Original_GolferId As Short, ByVal Original_Name As String, ByVal Original_Home_Course As String, ByVal GolferId As Short) As Integer
             If (Name Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Name")
             Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Name,String)
+                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Name,String)
             End If
             If (Home_Course Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Home_Course,String)
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Home_Course,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Original_GolferId,Short)
+            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Original_GolferId,Short)
             If (Original_Name Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Name")
             Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Original_Name,String)
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Original_Name,String)
             End If
             If (Original_Home_Course Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_Home_Course,String)
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Original_Home_Course,String)
             End If
+            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(GolferId,Short)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -1572,14 +1546,6 @@ Namespace GolfDatabaseDataSetTableAdapters
                     Me.Adapter.UpdateCommand.Connection.Close
                 End If
             End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal Name As String, ByVal Home_Course As String, ByVal Original_GolferId As Short, ByVal Original_Name As String, ByVal Original_Home_Course As String) As Integer
-            Return Me.Update(Original_GolferId, Name, Home_Course, Original_GolferId, Original_Name, Original_Home_Course)
         End Function
     End Class
     
@@ -1738,8 +1704,8 @@ Namespace GolfDatabaseDataSetTableAdapters
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO Stats"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (Course, Score, [Course Rating], [Slo"& _ 
                 "pe Rating], GolferId, Date)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@Course,@Score,@Course_Rating,@Slope"& _ 
-                "_Rating,@GolferId,@Date); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RoundId, Course, Score, [Course Rating], [Slo"& _ 
-                "pe Rating], GolferId, Date FROM Stats WHERE (RoundId = SCOPE_IDENTITY())"
+                "_Rating,@GolferId,@Date);  "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RoundId, Course, Score, [Course Rating], [Sl"& _ 
+                "ope Rating], GolferId, Date FROM Stats WHERE (RoundId = SCOPE_IDENTITY())"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Course", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "Course", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Score", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Score", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))

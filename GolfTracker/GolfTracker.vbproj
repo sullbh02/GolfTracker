@@ -64,6 +64,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -87,7 +88,24 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddGolferForm.Designer.vb">
+      <DependentUpon>AddGolferForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AddGolferForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Golfers.vb" />
+    <Compile Include="GolfStats.designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GolfStats.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="HandicapForm.Designer.vb">
+      <DependentUpon>HandicapForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HandicapForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainForm.Designer.vb">
       <DependentUpon>MainForm.vb</DependentUpon>
     </Compile>
@@ -136,6 +154,15 @@
     <Compile Include="Stats.vb" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="GolfStats.dbml.layout">
+      <DependentUpon>GolfStats.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="AddGolferForm.resx">
+      <DependentUpon>AddGolferForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HandicapForm.resx">
+      <DependentUpon>HandicapForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -167,10 +194,16 @@
     <None Include="GolfDatabaseDataSet.xss">
       <DependentUpon>GolfDatabaseDataSet.xsd</DependentUpon>
     </None>
+    <None Include="GolfStats.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>GolfStats.designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\Handicap.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
@@ -199,6 +232,10 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="GolfStats">
+  <DataContextMoniker Name="/GolfStatsDataContext" />
+  <nestedChildShapes>
+    <classShape Id="6d533d2d-764a-4601-8b28-2b0bb60b14ea" absoluteBounds="2.625, 0.875, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/GolfStatsDataContext/Stat" />
+      <nestedChildShapes>
+        <elementListCompartment Id="00d28def-ddea-4564-bca7-6d1dbd8d3e49" absoluteBounds="2.6399999999999997, 1.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

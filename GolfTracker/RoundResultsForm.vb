@@ -11,6 +11,8 @@ Public Class RoundResultsForm
     End Sub
 
     Private Sub RoundResultsForm_Load() Handles MyBase.Load
+        'TODO: This line of code loads data into the 'GolfDatabaseDataSet.Stats' table. You can move, or remove it, as needed.
+        Me.StatsTableAdapter.Fill(Me.GolfDatabaseDataSet.Stats)
         With cboGolfers.ComboBox
             .DataSource = mGolfers.Items
             .DisplayMember = "Name"
@@ -19,6 +21,7 @@ Public Class RoundResultsForm
             .SelectedIndex = -1
         End With
         loading = False
+
     End Sub
 
     Private Sub cboGolfer_SelectedIndexChanged() Handles cboGolfers.SelectedIndexChanged
@@ -29,10 +32,10 @@ Public Class RoundResultsForm
     End Sub
 
     Private Sub btnTest_Click(sender As Object, e As EventArgs) Handles btnTest.Click
+        Dim num As Integer
 
-        Dim golfers As List(Of Golfers)
-
-
+        num = dgvStats.RowCount - 1
+        MessageBox.Show("Scores: " & num)
 
     End Sub
 End Class
