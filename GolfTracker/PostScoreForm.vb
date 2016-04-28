@@ -17,6 +17,7 @@
 
         'Input validatin for COURSE NAME
         Dim course As String
+
         If txtCourseName.Text.Length = 0 Or IsNumeric(txtCourseName.Text) Then
             errProvider.SetError(txtCourseName, "Enter a course name")
             MessageBox.Show("Input Error, Please try posting a score again.")
@@ -28,6 +29,7 @@
 
         'Input validation for SCORE 
         Dim score As Integer
+
         If Not IsNumeric(txtScore.Text) Then
             errProvider.SetError(txtScore, "Please enter a Score.")
             MessageBox.Show("Score ERROR, Please try posting a score again.")
@@ -51,6 +53,7 @@
 
         'Input validation for SLOPE RATING
         Dim slopeRating As Decimal
+
         If Not IsNumeric(txtSlopeRating.Text) Then
             errProvider.SetError(txtSlopeRating, "Enter valid rating")
             MessageBox.Show("Slope Rating ERROR, Please try posting a score again.")

@@ -25,7 +25,7 @@
         If mGolfers.Insert(name, courseName) Then
             Me.Close()
         Else
-            lblStatus.Text = "Cannot Post Score" & Stats.LastError
+            lblStatus.Text = "Cannot Add Golfer" & Stats.LastError
 
 
         End If

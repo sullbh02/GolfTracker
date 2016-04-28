@@ -1,28 +1,21 @@
 ﻿Public Class MainForm
-    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+    Private Sub ExitToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem1.Click
         Me.Close()
     End Sub
 
-    Private Sub RoundToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RoundToolStripMenuItem.Click
+    Private Sub RoundToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles RoundToolStripMenuItem1.Click
         PostScoreForm.ShowDialog()
     End Sub
 
-    Private Sub RoundsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RoundsToolStripMenuItem.Click
+    Private Sub RoundToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles RoundToolStripMenuItem2.Click
         RoundResultsForm.ShowDialog()
     End Sub
 
-    Private Sub ViewToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem1.Click
-        GolfersForm.ShowDialog()
-    End Sub
-
-    Private Sub HandicapToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HandicapToolStripMenuItem.Click
-        HandicapForm.ShowDialog()
-
-    End Sub
-
-
-
-    Private Sub AddToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddToolStripMenuItem.Click
+    Private Sub NewToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles NewToolStripMenuItem1.Click
         AddGolferForm.ShowDialog()
+    End Sub
+
+    Private Sub ViewToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem2.Click
+        GolfersForm.ShowDialog()
     End Sub
 End Class

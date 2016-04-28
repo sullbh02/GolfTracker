@@ -100,17 +100,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GolfStats.dbml</DependentUpon>
     </Compile>
-    <Compile Include="HandicapForm.Designer.vb">
-      <DependentUpon>HandicapForm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="HandicapForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="MainForm.Designer.vb">
       <DependentUpon>MainForm.vb</DependentUpon>
     </Compile>
     <Compile Include="MainForm.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="PostScoreForm.vb">
       <SubType>Form</SubType>
@@ -135,11 +134,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -160,9 +154,6 @@
     <EmbeddedResource Include="AddGolferForm.resx">
       <DependentUpon>AddGolferForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HandicapForm.resx">
-      <DependentUpon>HandicapForm.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -174,9 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="RoundResultsForm.resx">
       <DependentUpon>RoundResultsForm.vb</DependentUpon>
@@ -212,6 +203,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Debug\mainBG.jpg" />
     <Content Include="GolfDatabase.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -23,6 +23,7 @@ Partial Class PostScoreForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PostScoreForm))
         Me.dtpDate = New System.Windows.Forms.DateTimePicker()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cboGolfer = New System.Windows.Forms.ComboBox()
@@ -189,6 +190,7 @@ Partial Class PostScoreForm
         Me.Controls.Add(Me.cboGolfer)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.dtpDate)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "PostScoreForm"
         Me.Text = "Post Score"
         CType(Me.errProvider, System.ComponentModel.ISupportInitialize).EndInit()
